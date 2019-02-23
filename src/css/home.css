@@ -1,0 +1,20 @@
+body{
+   
+}
+
+#k{
+    height:10px;
+    width: 300px;
+    margin: 80px; 
+}
+p{
+    font-size: 40px;
+}
+
+.green{
+    color:green;
+}
+
+.red{
+    color: red;
+}

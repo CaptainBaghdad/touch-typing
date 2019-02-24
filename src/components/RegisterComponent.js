@@ -1,5 +1,5 @@
 //import React, { Component } from 'react';
-//import * as React from 'react';
+import * as React from 'react';
 
 //
 /*import TextField from 'material-ui/TextField';
@@ -9,51 +9,94 @@ import '../css/home.css'*/
 
 class RegisterComponent extends React.Component {
 
-  state = {
-    open:true,
-    value: '',
-    userText: ''
+ 
+    state = {
+      name: '',
+      email: '',
+      password: ''
+   }
 
-  }
+ 
 
-  handleInput  = (input) => {
-    this.setState({value: input})
 
-  }
+  
 
-  captureKeyStrokes(event){
-    let val = event.key;
-    console.log(val);
 
-  }
+    handleChange = (event) => {
+      console.log(`WTF the name value : ${event.target.value}`)
+      this.setState({
+       [event.target.id] : event.target.value
+        
+      })
 
+    }
+
+    handleSubmit = (event)  =>{
+      
+      fetch('http://localhost:4000/register', {
+        method: 'POST',
+        body: JSON.stringify( {
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password
+        }),
+        headers: {
+         
+          'Content-Type': 'application/json'
+
+        }
+
+       
+      })
+        .then(res => res.json())
+        .then(data => console.log(`DATA FROM THE RESPONSE : ${data.data}`))
+        
+    }
+  
 
   render() {
 
     
     return (
       <div>
-        <h1>Press the area below this is where the keyboard is</h1>
-      <Keyboard
-        textField={
-          <TextField
-            id="text"
-            value={this.state.value}
-          />
-        }
-        automatic
-        onInput={this.handleInput}
-        layouts={[alphaNumericKeyboard]}
+        <h1>Register</h1>
+
+        <form onSubmit={this.handleSubmit}>
+        <input type="text" 
+        value={this.state.name}
+        onChange={this.handleChange} 
+        id="name"
+      
+        className="form-control"
         
-      />
-    <div id="k" 
-      tabIndex="0"
-      onKeyDown={this.captureKeyStrokes}
-    >
+        />
+
+        <input type="text"
+        id="email" 
+        value={this.state.email}
+        onChange={this.handleChange} 
+        
+        className="form-control"
+        
+        />
+
+        <input type="text"
+        id="password"
+        value={this.state.password}
+        onChange={this.handleChange}
+        
+        className="form-control"
+        
+        />
+        <br/>
+        <br/>
+        <input type="submit" className='form-control' />
+        </form>
+      
     
     </div>
       
-      </div>
+    
         
     );
   }

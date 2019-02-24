@@ -3,8 +3,11 @@ import * as React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './css/home.css';
+import {Link, Route, Switch} from 'react-router-dom';
 //
 import HomeComponent from './components/HomeComponent';
+import RegisterComponent from './components/RegisterComponent';
+import LoginComponent from './components/LoginComponent';
 import TextField from 'material-ui/TextField';
 import Keyboard from 'react-material-ui-keyboard';
 import { alphaNumericKeyboard } from 'react-material-ui-keyboard/layouts';
@@ -18,7 +21,11 @@ class App extends React.Component {
     red: false,
     correct: [],
     wrong: [],
-    start: 0
+    start: 0,
+    name: '',
+    email: '',
+    password:''
+
 
   }
 
@@ -102,9 +109,11 @@ class App extends React.Component {
 
     
     return (
+     
       <div>
+        <div id="section-1-l">
         <h4>{this.state.wpm}</h4>
-        <p className={this.state.green}>{this.state.value}</p>
+        <p >{this.state.value}</p>
        <textarea 
       id="k" 
       name='k'
@@ -115,9 +124,18 @@ class App extends React.Component {
       
       
       />
-    
-      
       </div>
+
+      <div id="section-1-r">
+      <Link to="/register">Register</Link>
+      <Link to="/login" >Login</Link>
+        </div>
+  <Switch>
+     <Route path='/login'  component={LoginComponent} />
+     <Route path='/register'  component={RegisterComponent} />
+  </Switch>
+      </div>
+    
         
     );
   }

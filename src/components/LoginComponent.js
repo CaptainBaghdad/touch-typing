@@ -1,11 +1,8 @@
 //import React, { Component } from 'react';
 import * as React from 'react';
+import {Link}  from 'react-router-dom';
 
-//
-/*import TextField from 'material-ui/TextField';
-import Keyboard from 'react-material-ui-keyboard';
-import { alphaNumericKeyboard } from 'react-material-ui-keyboard/layouts';
-import '../css/home.css'*/
+import '../css/home.css'
 
 class LoginComponent extends React.Component {
 
@@ -23,19 +20,21 @@ class LoginComponent extends React.Component {
 
 
     handleChange = (event) => {
+        event.preventDefault();
       this.setState({
        
-        email: event.target.email,
-        password: event.target.password
+        [event.target.id]: event.target.value
+         
       })
 
     }
 
     handleSubmit = (event) => {
+        const {history} = this.props;
       fetch('http://localhost:4000/login', {
         method: 'POST',
         headers: {
-          'Accepts': 'application/json',
+          
           'Content-Type': 'application/json'
 
         },
@@ -43,12 +42,28 @@ class LoginComponent extends React.Component {
         body: JSON.stringify({
           
           email: this.state.email,
-          pasword: this.state.password
+          password: this.state.password
         })
       })
         .then(res => res.json())
         .then(data => {
-          console.log(`Post server response ${data.name}`);
+            if(data.msg){
+                console.log(data.msg)
+                window.location = '/login';
+               // browserHistory.push('/login');
+
+            }
+
+            else{
+                console.log(`this is the return from the server ${localStorage.getItem('token')}`);
+                localStorage.setItem('token', data.token);
+                    window.location = '/dashboard';
+                //browserHistory.push('/dashboard');
+            }
+
+         
+
+         //console.log(localStorage.getItem('token'))
         })
     }
   
@@ -83,7 +98,7 @@ class LoginComponent extends React.Component {
         <input type="submit" className='form-control' />
         </form>
       
-    
+    <Link to="/register">Sign up</Link>
     </div>
       
     

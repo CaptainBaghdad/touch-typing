@@ -8,9 +8,9 @@ import {Link, Route, Switch} from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
 import RegisterComponent from './components/RegisterComponent';
 import LoginComponent from './components/LoginComponent';
-import TextField from 'material-ui/TextField';
-import Keyboard from 'react-material-ui-keyboard';
-import { alphaNumericKeyboard } from 'react-material-ui-keyboard/layouts';
+
+import DashBoardComponent from './components/DashBoardComponent';
+import LogoutComponent from './containers/LogoutComponent';
 
 class App extends React.Component {
   state = {
@@ -125,14 +125,14 @@ class App extends React.Component {
       
       />
       </div>
-
-      <div id="section-1-r">
-      <Link to="/register">Register</Link>
-      <Link to="/login" >Login</Link>
-        </div>
+     
+      
   <Switch>
-     <Route path='/login'  component={LoginComponent} />
-     <Route path='/register'  component={RegisterComponent} />
+    <Route exact path="/" component={HomeComponent} />
+     <Route exact path='/login'  component={LoginComponent} />
+     <Route exact path='/register'  component={RegisterComponent} />
+     <Route exact path='/dashboard' component={DashBoardComponent} />
+     <Route exact path="/logout" component={LogoutComponent} />
   </Switch>
       </div>
     

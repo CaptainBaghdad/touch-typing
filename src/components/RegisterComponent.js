@@ -1,11 +1,8 @@
 //import React, { Component } from 'react';
 import * as React from 'react';
+import {Link} from 'react-router-dom';
 
-//
-/*import TextField from 'material-ui/TextField';
-import Keyboard from 'react-material-ui-keyboard';
-import { alphaNumericKeyboard } from 'react-material-ui-keyboard/layouts';
-import '../css/home.css'*/
+//import '../css/home.css'*/
 
 class RegisterComponent extends React.Component {
 
@@ -49,7 +46,7 @@ class RegisterComponent extends React.Component {
        
       })
         .then(res => res.json())
-        .then(data => console.log(`DATA FROM THE RESPONSE : ${data.data}`))
+        .then(data => window.location = '/login');
         
     }
   
@@ -93,7 +90,7 @@ class RegisterComponent extends React.Component {
         <input type="submit" className='form-control' />
         </form>
       
-    
+    <Link to="/login">Login</Link>
     </div>
       
     

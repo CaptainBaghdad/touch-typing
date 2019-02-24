@@ -1,10 +1,11 @@
 body{
+    background: #e5e6e8;
    
 }
 
 #k{
-    height:10px;
-    width: 300px;
+    height:30px;
+    width: 500px;
     margin: 80px; 
 }
 p{
@@ -25,4 +26,29 @@ p{
 
 #section-1-r{
     float:right;
+    height:55px;
+    background:black;
+    width: 100%;
+    position: absolute;
+
+}
+
+#main-img{
+    width: 100%;
+    background:transparent;
+}
+
+ul li{
+    list-style: none;
+    display:inline;
+}
+
+.display-pic{
+    height:80px;
+    width:80px;
+    margin-right:80px;
+    margin-top:40px;
+    border: 3px solid green;
+    box-shadow: #e5e6e8;
+    
 }

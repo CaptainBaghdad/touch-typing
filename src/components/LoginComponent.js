@@ -30,7 +30,7 @@ class LoginComponent extends React.Component {
     }
 
     handleSubmit = (event) => {
-        const {history} = this.props;
+        
       fetch('http://localhost:4000/login', {
         method: 'POST',
         headers: {
@@ -50,7 +50,7 @@ class LoginComponent extends React.Component {
             if(data.msg){
                 console.log(data.msg)
                 window.location = '/login';
-               // browserHistory.push('/login');
+              
 
             }
 
@@ -58,12 +58,12 @@ class LoginComponent extends React.Component {
                 console.log(`this is the return from the server ${localStorage.getItem('token')}`);
                 localStorage.setItem('token', data.token);
                     window.location = '/dashboard';
-                //browserHistory.push('/dashboard');
+                
             }
 
          
 
-         //console.log(localStorage.getItem('token'))
+         
         })
     }
   

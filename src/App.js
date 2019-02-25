@@ -13,7 +13,10 @@ import DashBoardComponent from './components/DashBoardComponent';
 import LogoutComponent from './containers/LogoutComponent';
 import Error404 from './containers/Error404';
 import Error500 from './containers/Error500';
-import LetteruComponent from './components/LetterUComponent';
+import LetterUComponent from './components/LetterUComponent';
+import LetterIComponent from './components/LetterIComponent';
+import LetterRComponent from './components/LetterRComponent';
+import LetterEComponent from './components/LetterEComponent'; 
 
 
 class App extends React.Component {
@@ -35,7 +38,10 @@ class App extends React.Component {
      <Route exact path="/logout" component={LogoutComponent} />
      <Route exact path="/error404" component={Error404} />
      <Route exact path="/error500" component={Error500} />
-     <Route exact path="/letteru" component={LetteruComponent} />
+     <Route exact path="/letteru" component={LetterUComponent} />
+     <Route exact path="/lettere" component={LetterEComponent} />
+     <Route exact path="/letteri" component={LetterIComponent} />
+     <Route exact path="/letterr" component={LetterRComponent} />
   </Switch>
       </div>
     

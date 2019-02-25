@@ -127,10 +127,10 @@ class HomeComponent extends React.Component {
     <section id="second-home-section">
     <center>choose one
     <ul>
-      <li><Link to="letteru"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-u.jpg'} alt="no pic" /></Link></li>
-      <li><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-i.jpg'} alt="mp pic" /></li>
-      <li><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-e.png'} alt="no pic" /></li>
-      <li><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-r.png'} alt="no pic" /></li>
+      <li><Link to="/letteru"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-u.jpg'} alt="no pic" /></Link></li>
+      <li><Link to="/letterr"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-r.png'} alt="mp pic" /></Link></li>
+      <li><Link to="/letteri"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-i.jpg'} alt="no pic" /></Link></li>
+      <li><Link to="/lettere"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-e.png'} alt="no pic" /></Link></li>
     </ul>
 
 

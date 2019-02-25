@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
-class LetterUComponent extends Component{
+class LetterRComponent extends Component{
     render(){
         return (
             <div className="container">
-            <h1>Letter u component</h1>
+            <h1>Letter R component</h1>
             
             </div>
         )
@@ -13,5 +13,5 @@ class LetterUComponent extends Component{
 }
 
 
-export default LetterUComponent;
+export default LetterRComponent;
 

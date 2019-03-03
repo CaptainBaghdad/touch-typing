@@ -1,0 +1,16 @@
+body{
+    margin-right: 25px;
+    padding-right: 25px;
+    background: url(`process.env.PUBLIC_URL/images/main-background.png`)
+}
+
+
+.red{
+    color:red;
+}
+
+#r-input{
+    height:60px;
+    width:90%;
+    font-size: 20px;
+}

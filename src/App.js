@@ -17,7 +17,7 @@ import LetterUComponent from './components/LetterUComponent';
 import LetterIComponent from './components/LetterIComponent';
 import LetterRComponent from './components/LetterRComponent';
 import LetterEComponent from './components/LetterEComponent'; 
-
+import ResultsComponent from './components/ResultsComponent';
 
 class App extends React.Component {
   
@@ -42,6 +42,7 @@ class App extends React.Component {
      <Route exact path="/lettere" component={LetterEComponent} />
      <Route exact path="/letteri" component={LetterIComponent} />
      <Route exact path="/letterr" component={LetterRComponent} />
+     <Route exact path="/results" component={ResultsComponent} />
   </Switch>
       </div>
     

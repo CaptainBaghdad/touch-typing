@@ -1,88 +1,84 @@
 import React, {Component} from 'react';
 import '../css/letteru.css';
+import ResultsComponent from './ResultsComponent';
 
 class LetterUComponent extends Component{
     state= {
-        wpm:'uuuouuooie uiuuiiu een ternn thnd ooouu uuu',
+        wpm:'uuuouuooie uiuuiiu een ternn thnd ooouu uuuuii riiiiu uuueuusu iuuuousuuuiuuull iioootuuuuu yuuupuuu ruuufuuujuuulkun uuu tttereuuuu',
         userInput: '',
         start: 0,
         red: false,
         correct: [],
-        wrong:[]
-
+        wrong:[],
+        score: 0
     }
 
-    captureKeyStrokes = (event) =>{
+
+    componentDidMount(nextprops, nextstate){
+        let holder = document.getElementById('u-container');
+        let uInput = document.getElementById('u-input');
+        let mainContainer = document.getElementById('main-container');
+        mainContainer.style.height = '1000px';
+        mainContainer.style.width = '1000px';
+        mainContainer.style.background = `url(${process.env.PUBLIC_URL} /images/main-background.png)`;
+
+        holder.style.display = 'none';
+        uInput.style.display = 'none';
+        let wpmHoler = document.getElementById('wpmHolder');
+        console.log(`This is the component mount ${uInput} `);
         
-        let str = this.state.wpm.trim();
-        let strSplit = str.split('');
-        let input = this.state.userInput;
-        let inputSplit = input.split('');
-        //let s = this.state.start;
-        console.log(`this is USER INPUT  ${inputSplit[this.state.start]}`);
-
-        if(strSplit[this.state.start] === inputSplit[this.state.start]){
-            console.log(`this is the user input ${strSplit[this.state.start]}`);
-            
-            this.setState({
-                start: this.state.start +=1,
-                correct: [...this.state.correct, strSplit[this.state.start]],
-               
-                
-                userInput: event.target.value
-            });
-            console.log(this.state.correct);
-            //console.log('Correct' + ' ' + this.state.start + "," + " " + strSplit[this.state.start] + ", "  + " " + input.charAt(this.state.start));
-        }
-            else{
-                this.setState({
-                    red: true,
-                    wrong: [...this.state.wrong, strSplit[this.state.start]],
-
-
-                    
-                    start: this.state.start
-
-                })
-                console.log('Wrong' + ' ' + this.state.start + " " + strSplit[this.state.start] );
-                console.log('Wrong' + ' ' + this.state.start + " " + this.state.userInput.charAt(this.state.start) );
-            }
-
-            if(this.state.start == this.state.wpm.length){
-                console.log('Finished');
-
-            }
-
-
     }
-
+    
     handleStart = (event) => {
-        //prompt(`Start is started`);
+        let holder = document.getElementById('u-container');
+        let uInput = document.getElementById('u-input');
+        let uText = document.getElementById('u-input');
+        let ubtn = document.getElementById('ubtn');
+        uInput.style.display = 'inline';
+        ubtn.style.display = 'none';
         let len = this.state.wpm.length;
-        let milli = 60000;
+        let milli = 1000;
+        let coun = 0;
         let interFunction = () => {
-            if(len == this.state.start){
+            coun ++;
+            if(len == this.state.start || coun == 20){
+                
+                let uDisplay  = document.getElementById('u-container');
+                uDisplay.style.display = 'inline';
                 clearInterval(interFunction);
-                window.location = '/letterr'
+                this.setState({
+                    score: this.state.userInput.length / 5
+                });
 
             }
 
-            else{
-                let userLen = this.state.userInput.length;
-                let wpmLen = this.state.wpm.length;
-                let userWordsPerMinute = userLen / 5;
-                //alert(`This is the return from the setInterval ${userWordsPerMinute}`);
-                console.log('UserInput : ' + " " + this.state.userInput);
-                clearInterval(interFunction);
-            }
-
+           
         };
 
-                //alert('You have finished before a min');
+               
                 setInterval(interFunction,milli);
-                
+
+                if(this.state.userInput.charAt(this.state.start) == this.state.wpm.charAt(this.state.start)){
+                    this.setState({
+                        start: this.state.start +=1
+                    });
+
+                }
             }
             
+
+            captureKeyStrokes = (event) =>{
+               
+               if(this.state.userInput.charAt(this.state.start) == this.state.wpm.charAt(this.state.start)){
+                    
+                    this.setState({
+                        start: this.state.start +=1,
+                        right: [... this.state.right, this.state.wpm.charAt(this.state.start)]
+
+                    })
+
+                }
+            }
 
     
 handleChange = (event) => {
@@ -93,46 +89,38 @@ handleChange = (event) => {
 }
 
 
-
-
-
-
-    render(){
-        //const wpm = ' ';
+        render(){
+ 
         return (
-            <div className="container">
-            <h1> U</h1>
-            <br/>
-            <div className="letter-u-holder">
-            <h4 className={this.state.red ? 'red' : ''}>{this.state.wpm}</h4>
+            <div className="container" id="main-container">
+            <h4  id="wpmHolder">{this.state.wpm}</h4>
             <br/>
            
-            <span className={this.state.red ? 'red' : ''}>{this.state.userInput.charAt(this.state.start) + this.state.userInput.slice(this.state.start +1)} </span>
-           <br/>
-           <br/>
-            <button className="btn btn-success" onClick={this.handleStart} >Start</button>
-            <br/>
-            <br/>
-            <h3>start typing</h3>
+            <button className="btn btn-success" onClick={this.handleStart} id="ubtn">Start</button>
             <br/>
             <br/>
             
             <center>
-       <input type='text' 
-      id="k" 
-      name='k'
-      onChange={this.handleChange}
-      value={this.state.userInput}
-      onKeyPress={this.captureKeyStrokes}
-      //onClick={this.handleStart}
-      
-      className="form-control"
-      />
-      </center>
+                    <input type='text' 
+                           id="u-input" 
+                           name='k'
+                           onChange={this.handleChange}
+                           value={this.state.userInput}
+                           onKeyPress={this.captureKeyStrokes}
+                           className="form-control"
+                    />
+     
+            </center>
 
+                    <div  id="u-container">
 
-            </div>
-            </div>
+                            <ResultsComponent 
+                                    wpm={this.state.wpm}
+                                    score={this.state.score}
+                            />
+
+                    </div>
+                    </div>
         )
     }
 

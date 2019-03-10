@@ -39,6 +39,8 @@ class LetterUComponent extends Component{
         let len = this.state.wpm.length;
         let milli = 1000;
         let coun = 0;
+        let userToken = localStorage.getItem('token');
+        console.log(userToken);
         let interFunction = () => {
             coun ++;
             if(len == this.state.start || coun == 20){
@@ -50,7 +52,25 @@ class LetterUComponent extends Component{
                     score: this.state.userInput.length / 5
                 });
 
+                fetch(`http://localhost:4000/eresults`, {
+                    method: 'POST',
+                    headers: {
+                        'Accepts': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        token: userToken,
+                        score: this.state.score
+
+                    })
+                })
+                .then((res) => res.json())
+                .then(data => {
+                    console.log(data)
+                })
+
             }
+
 
            
         };

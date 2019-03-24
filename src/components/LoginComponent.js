@@ -47,24 +47,16 @@ class LoginComponent extends React.Component {
       })
         .then(res => res.json())
         .then(data => {
-            if(data.msg){
-                console.log(data.msg)
-                window.location = '/login';
-              
+            
 
-            }
-
-            else{
-                console.log(`this is the return from the server ${localStorage.getItem('token')}`);
+            
+                
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('name', data.data.name);
                     window.location = '/dashboard';
                 
-            }
-
-         
-
-         
-        })
+            
+         })
     }
   
 

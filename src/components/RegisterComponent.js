@@ -32,16 +32,17 @@ class RegisterComponent extends React.Component {
       
       fetch('http://localhost:4000/register', {
         method: 'POST',
-        body: JSON.stringify( {
-          name: this.state.name,
-          email: this.state.email,
-          password: this.state.password
-        }),
         headers: {
          
           'Content-Type': 'application/json'
 
-        }
+        },
+        body: JSON.stringify( {
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password
+        })
+       
 
        
       })

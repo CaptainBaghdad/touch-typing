@@ -32,20 +32,30 @@ class LetterRComponent extends Component{
             {userInput: event.target.value}, () => {console.log(this.state.wpm.length)})
     }
 
-    handleInput = (event) =>{
+    handleStart = (event) =>{
         
             let milli = 1000
             let coun = 0;
             let len = this.state.wpm.length;
             let eachVal = 0.48;
             let userInputLength = this.state.userInput.length;
+            let blockID = document.getElementById('r-input');
+            let btnID = document.getElementById('r-start');
+
+            blockID.style.display = 'inline';
+                    btnID.style.display = 'none';
             let intervalFunction = () => {
                 coun++
                 
-                if(this.state.start == len || coun == 60){
+                if(this.state.start == len || coun == 20){
                     let resultsDisplay = document.getElementById('results-display');
-                    let blockID = document.getElementById('r-input');
+                    resultsDisplay.style.display = 'inline';
                     let userPointsPer = 100 / userInputLength;
+                    let userToken = localStorage.getItem('token');
+                    let userName = localStorage.getItem('name');
+                    
+                    //let blockID = document.getElementById('r-input');
+                    
                     
                     this.setState({
                         score: this.state.userInput.length / 5
@@ -54,6 +64,21 @@ class LetterRComponent extends Component{
                     blockID.style.display = 'none';
                     clearInterval(intervalFunction);
                     resultsDisplay.style.display = 'inline'
+
+                    fetch('http://localhost:4000/rresults', {
+                        method: "POST",
+                        headers: {
+                            'Accepts': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            token: userToken,
+                            score: this.state.score
+
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => console.log(data))
                    
                 } 
        
@@ -62,35 +87,18 @@ class LetterRComponent extends Component{
             
             if(this.state.wpm.trim().charAt(this.state.start) == this.state.userInput.trim().charAt(this.state.start)){
             this.setState({
-                start: this.state.start += 1,
-                red:false,
-                right: [... this.state.right, this.state.wpm.trim().charAt(this.state.start) ] 
+                start: this.state.start += 1
             })
             
            
         }
 
-        else {
-            
-            this.setState({
-                wrong: [... this.state.wrong, this.state.wpm.charAt(this.state.start)]
-            })
-           
-            
-        }
+       
   
     }
 
           
-    handleStart = (event) => {
-        let btnID = document.getElementById('r-start');
-        let blockID = document.getElementById('r-input');
-        blockID.style.display = 'inline';
-        btnID.style.display = 'none';
-        let c = 0;
-        let milli = 1000;
-        
-    }
+ 
 
 
     render(){
@@ -114,7 +122,7 @@ class LetterRComponent extends Component{
             />
             <br/>
             <br/>
-            <button id='r-start' className='btn btn-success' onClick={this.handleStart} >Press here</button>
+            <button id='r-start' className='btn btn-success' onClick={this.handleStart} >Start</button>
            
         
             <div className="row" id="results-display">

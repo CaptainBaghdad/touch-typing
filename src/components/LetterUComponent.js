@@ -52,7 +52,7 @@ class LetterUComponent extends Component{
                     score: this.state.userInput.length / 5
                 });
 
-                fetch(`http://localhost:4000/eresults`, {
+                fetch(`http://localhost:4000/uresults`, {
                     method: 'POST',
                     headers: {
                         'Accepts': 'application/json',

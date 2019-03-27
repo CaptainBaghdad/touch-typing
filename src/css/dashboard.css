@@ -1,3 +1,8 @@
 #user-info{
     float:right;
 }
+
+.badge{
+    font-size: 30px;
+    margin-left: 40px;
+}

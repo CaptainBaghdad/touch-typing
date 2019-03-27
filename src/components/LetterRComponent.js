@@ -13,7 +13,8 @@ class LetterRComponent extends Component{
         start: 0,
         right:[],
         wrong:[],
-        score:0
+        score:0,
+        userWpm: ''
     }
 
     componentDidMount(nextprops, nextstate){
@@ -29,7 +30,9 @@ class LetterRComponent extends Component{
 
     handleChange = (event) => {
         this.setState(
-            {userInput: event.target.value}, () => {console.log(this.state.wpm.length)})
+            {userInput: event.target.value,
+            userWpm: this.state.wpm.slice(this.state.start)
+        })
     }
 
     handleStart = (event) =>{
@@ -107,11 +110,11 @@ class LetterRComponent extends Component{
             <div className="container" id="main-background">
             <h1>Letter R component</h1>
             <br/>
-            <h3>{this.state.wpm}</h3>
+            
             <br/>
             <br/>
             <br/><br/>
-        <h3>{this.state.userInput}</h3>
+        <h3>{this.state.userInput == '' ? this.state.wpm : this.state.userWpm}</h3>
 
             <input type="text" 
             className={this.state.red ? 'red' : (<span>{this.state.wpm.charAt(this.state.start)}</span>) } 

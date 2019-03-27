@@ -41,11 +41,18 @@ class HomeComponent extends React.Component {
 
     
     return (
-      <div>
+      <div className="container">
         
+        
+        <div className="main-title">
+        <h3>Touch Typing</h3>
+
+        </div>
         <div id="section-1-r">
-      <Link to="/register">Register</Link>
-      <Link to="/login" >Login</Link>
+      <Link to="/register" className="links">Login
+      </Link>
+
+      <Link to="/login" className="links" >Register</Link>
         </div>
 
 
@@ -75,13 +82,12 @@ class HomeComponent extends React.Component {
     </section>
 
 
+       <section id="footer-holder">
+         <footer>
 
-          <div id="section-1-l">
-        <h4>{this.state.wpm}</h4>
-        <p >{this.state.value}</p>
-        
-      </div>
-    
+         </footer>
+       </section>
+          
       
     </div>
       

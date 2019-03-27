@@ -10,7 +10,8 @@ class LetterUComponent extends Component{
         red: false,
         correct: [],
         wrong:[],
-        score: 0
+        score: 0,
+        userWpm:  ''
     }
 
 
@@ -93,6 +94,7 @@ class LetterUComponent extends Component{
                     
                     this.setState({
                         start: this.state.start +=1,
+                        
                         right: [... this.state.right, this.state.wpm.charAt(this.state.start)]
 
                     })
@@ -104,7 +106,8 @@ class LetterUComponent extends Component{
 handleChange = (event) => {
         
         this.setState({
-            userInput: event.target.value
+            userInput: event.target.value,
+            userWpm: this.state.wpm.slice(this.state.start)
         });
 }
 
@@ -113,8 +116,12 @@ handleChange = (event) => {
  
         return (
             <div className="container" id="main-container">
-            <h4  id="wpmHolder">{this.state.wpm}</h4>
+            
             <br/>
+
+            <br/>
+            <div>{this.state.userInput == '' ? this.state.wpm : this.state.userWpm}</div>
+            
            
             <button className="btn btn-success" onClick={this.handleStart} id="ubtn">Start</button>
             <br/>

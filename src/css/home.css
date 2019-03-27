@@ -26,12 +26,35 @@ p{
 
 #section-1-r{
     float:right;
-    height:55px;
-    background:black;
-    width: 100%;
-    position: absolute;
+    
+    background: cornsilk;
+    
+    font-size: 22px;
+    margin-left: 12px;
+    margin-top: 28px;
+   
+    
 
 }
+
+.links{
+    margin-left: 18px;
+}
+
+#footer-holder{
+    height: 150px;
+    width: 100%;
+    background: darkcyan;
+    opacity: 0.5;
+}
+
+
+
+.main-title{
+    float:left;
+    margin-top:2px;
+}
+
 
 #main-img{
     width: 100%;

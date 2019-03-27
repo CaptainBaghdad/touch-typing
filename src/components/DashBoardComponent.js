@@ -9,17 +9,19 @@ class DashBoardComponent extends React.Component{
         lastScore: 0,
         scores: [],
         profileURL: '',
-        obj: {}
+        obj: {},
+        avg:0,
+        bool: ''
     }
 
     componentDidMount(){
         console.log(`localStorage on componentDidMount ${localStorage.getItem('token')}`);
-        this.handleMount()
-    
+        this.handleMount();
+        
+     }
 
-        
-        
-    }
+
+    
 
     handleMount(){
         if(localStorage.getItem('token') == null || localStorage.getItem('token') == undefined){
@@ -41,8 +43,10 @@ class DashBoardComponent extends React.Component{
              console.log(`This is the dashboard promise response ${data.name}`);
              console.log(`This is the data response object ${data.letterR}`);
              this.setState({
-                 username: localStorage.getItem('name'),
-                 obj: data.data
+                 username: name,
+                 obj: data.data,
+                 avg: data.avg,
+                 bool: data.bool
              })
              
                  console.log(data);
@@ -51,7 +55,9 @@ class DashBoardComponent extends React.Component{
              
              
          })
-    }
+         
+        
+        }
 
     render(){
         
@@ -75,7 +81,7 @@ class DashBoardComponent extends React.Component{
 
                 <div className="row">
                 <div className="col-md-4 col-lg-4 col-xs-4" id="user-info">
-                <p>Logged in as {this.state.username.charAt(0).toUpperCase() + this.state.username.slice(1)}</p>
+                <p>Logged in as {this.state.username.charAt(0).toUpperCase() + this.state.username.slice(1)}</p> 
                 </div>
 
 
@@ -83,12 +89,22 @@ class DashBoardComponent extends React.Component{
 
                 <div className='row'>
                 <div className="col-xs-4 col-md-4 col-lr-4">
-                <h3>Letter U WPM {this.state.obj.letterU}</h3>
+                <h3>Letter U WPM <span className="wpm">{!this.state.bool ? 0 : this.state.obj.letterU}</span></h3>
                 <br/>
                 <br/>
-                <h3>Letter R WPM {this.state.obj.letterR}</h3>
+                <h3>Letter R WPM <span className="wpm">{!this.state.bool ? 0 : this.state.obj.letterR}</span></h3>
+                <br/>
+                <br/>
+                <h3>Letter E WPM <span className="wpm" id="E">{!this.state.bool ? 0 : this.state.obj.letterE}</span></h3>
                 </div>
                 </div>
+                <br/>
+                <br/>
+                <h3>Letter I WPM <span className="wpm">{!this.state.bool ? 0 : this.state.obj.letterI}</span></h3>
+                <br/>
+                <br/>
+
+                <h2>AVG <span className="badge">{this.state.avg.toFixed(2)}</span></h2>
             </div>
         )
     }

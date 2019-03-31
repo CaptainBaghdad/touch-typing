@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import '../css/letterr.css';
+import '../css/letteru.css';
 import ResultsComponent from './ResultsComponent';
+import {Link} from 'react-router-dom';
 
 class LetterRComponent extends Component{
 
@@ -14,91 +15,120 @@ class LetterRComponent extends Component{
         right:[],
         wrong:[],
         score:0,
-        userWpm: ''
+        userWpm:''
     }
 
     componentDidMount(nextprops, nextstate){
-        let holder = document.getElementById('main-background');
-        let blockID = document.getElementById('r-input');
-        holder.style.background = `url(${process.env.PUBLIC_URL} /images/main-background.png)`;
-        holder.style.height = '1000px';
-        holder.style.width = '1000px';
-        blockID.style.display = 'none';
-        let resultsDisplay = document.getElementById('results-display');
-        resultsDisplay.style.display = 'none'  
-    }
-
-    handleChange = (event) => {
-        this.setState(
-            {userInput: event.target.value,
-            userWpm: this.state.wpm.slice(this.state.start)
-        })
-    }
-
-    handleStart = (event) =>{
+        //his.state.wpm = '';
+       let token =  localStorage.getItem('token');
+       if(token == '' || token == undefined){
+        window.location = "/login";
+       }
+        let holder = document.getElementById('r-container');
+        holder.style.display = 'none';
         
-            let milli = 1000
-            let coun = 0;
-            let len = this.state.wpm.length;
-            let eachVal = 0.48;
-            let userInputLength = this.state.userInput.length;
-            let blockID = document.getElementById('r-input');
-            let btnID = document.getElementById('r-start');
+        let nxtbtn = document.getElementById('nxt-btn');
+        nxtbtn.style.display = 'none';
+        let rInput = document.getElementById('r-input');
+        //let mainContainer = document.getElementById('main-container');
+        //mainContainer.style.height = '1000px';
+       // mainContainer.style.width = '1000px';
+       // mainContainer.style.background = `url(${process.env.PUBLIC_URL} /images/main-background.png)`;
 
-            blockID.style.display = 'inline';
-                    btnID.style.display = 'none';
-            let intervalFunction = () => {
-                coun++
+        //holder.style.display = 'none';
+        rInput.style.display = 'none';
+        
+        let wpmHoler = document.getElementById('wpmHolder');
+        console.log(`This is the component mount ${rInput} `);
+        
+    }
+    
+    handleStart = (event) => {
+        let holder = document.getElementById('r-container');
+        holder.style.display = 'none';
+        let ani = document.getElementById('ani');
+        ani.style.display = 'none';
+
+        let rInput = document.getElementById('r-input');
+        let rText = document.getElementById('r-input');
+        let rbtn = document.getElementById('rbtn');
+        
+        rInput.style.display = 'inline';
+        rbtn.style.display = 'none';
+        let len = this.state.wpm.length;
+        let milli = 1000;
+        let coun = 0;
+        let userToken = localStorage.getItem('token');
+        console.log(userToken);
+        let interFunction = () => {
+            coun ++;
+            if(len == this.state.start || coun == 20){
                 
-                if(this.state.start == len || coun == 20){
-                    let resultsDisplay = document.getElementById('results-display');
-                    resultsDisplay.style.display = 'inline';
-                    let userPointsPer = 100 / userInputLength;
-                    let userToken = localStorage.getItem('token');
-                    let userName = localStorage.getItem('name');
-                    
-                    //let blockID = document.getElementById('r-input');
-                    
+                let rDisplay  = document.getElementById('r-container');
+                rInput.style.display = 'none';
+                rDisplay.style.display = 'inline';
+                let nxtbtn = document.getElementById('nxt-btn');
+        nxtbtn.style.display = 'inline';
+                clearInterval(interFunction);
+                this.setState({
+                    score: this.state.userInput.length / 5
+                });
+
+                fetch(`http://localhost:4000/rresults`, {
+                    method: 'POST',
+                    headers: {
+                        'Accepts': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        token: userToken,
+                        score: this.state.score
+
+                    })
+                })
+                .then((res) => res.json())
+                .then(data => {
+                    console.log(data)
+                })
+
+            }
+
+
+           
+        };
+
+               
+                setInterval(interFunction,milli);
+
+                if(this.state.userInput.charAt(this.state.start) == this.state.wpm.charAt(this.state.start)){
+                    this.setState({
+                        start: this.state.start +=1
+                    });
+
+                }
+            }
+            
+
+            captureKeyStrokes = (event) =>{
+               
+               if(this.state.userInput.charAt(this.state.start) == this.state.wpm.charAt(this.state.start)){
                     
                     this.setState({
-                        score: this.state.userInput.length / 5
+                        start: this.state.start +=1,
+                        userWpm: this.state.wpm.slice(this.state.start)
+
                     })
 
-                    blockID.style.display = 'none';
-                    clearInterval(intervalFunction);
-                    resultsDisplay.style.display = 'inline'
-
-                    fetch('http://localhost:4000/rresults', {
-                        method: "POST",
-                        headers: {
-                            'Accepts': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            token: userToken,
-                            score: this.state.score
-
-                        })
-                    })
-                    .then(res => res.json())
-                    .then(data => console.log(data))
-                   
-                } 
-       
+                }
             }
-            setInterval(intervalFunction, milli);
-            
-            if(this.state.wpm.trim().charAt(this.state.start) == this.state.userInput.trim().charAt(this.state.start)){
-            this.setState({
-                start: this.state.start += 1
-            })
-            
-           
-        }
 
-       
-  
-    }
+    
+handleChange = (event) => {
+        
+        this.setState({
+            userInput: event.target.value
+        });
+}
 
           
  
@@ -107,41 +137,65 @@ class LetterRComponent extends Component{
     render(){
 
         return (
-            <div className="container" id="main-background">
-            <h1>Letter R component</h1>
-            <br/>
-            
-            <br/>
-            <br/>
-            <br/><br/>
-        <h3>{this.state.userInput == '' ? this.state.wpm : this.state.userWpm}</h3>
+            <div className="container" id="main-container">
+            <div className='row'>
+            <div className='col-md-8 col-lg-8 col-xs-8'>
+            <h1 class="ml4" id="ani">
+                <span class="letters letters-1">Press</span>
+                <span class="letters letters-2">Start</span>
+                <span class="letters letters-3">Button!</span>
+            </h1>
 
-            <input type="text" 
-            className={this.state.red ? 'red' : (<span>{this.state.wpm.charAt(this.state.start)}</span>) } 
-            onChange={this.handleChange}
-            onKeyUpCapture={this.handleInput}
-            id="r-input"
+            <br/>
+            <br/>
+            <br/>
 
-            />
-            <br/>
-            <br/>
-            <button id='r-start' className='btn btn-success' onClick={this.handleStart} >Start</button>
            
-        
-            <div className="row" id="results-display">
-            <div className="col-md-5 col-lg-5 col-sm-5">
-                <ResultsComponent 
-                wrong={this.state.wrong} 
-                right={this.state.right} 
-                score={this.state.score}
-                wpm={this.state.wpm}
-                
-                
-                />
+            <br/>
+            <br/>
+            <h4>{this.state.userInput == '' ? this.state.wpm : this.state.userWpm}</h4>
+            
+            </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <button className="btn btn-success" onClick={this.handleStart} id="rbtn">Start</button>
+            
+            
+            <center>
+                <div className='row'>
+                <div className='col-md-4 col-lg-4 col-xs-4'>
+                    <input type='text' 
+                           id="r-input" 
+                           name='k'
+                           onChange={this.handleChange}
+                           value={this.state.userInput}
+                           onKeyUpCapture={this.captureKeyStrokes}
+                           className="form-control"
+                    />
+                </div>
+                </div>
+            </center>
 
-            </div>
-            </div>
-            </div>
+                    <div  id="r-container">
+
+                            <ResultsComponent 
+                                    wpm={this.state.wpm}
+                                    score={this.state.score}
+                            />
+
+                    </div>
+                    <br/>
+                    <br/>
+                        <div className='row' id="next-holder">
+                        <div className='col-md-4 col-lg-4 col-xs-4'>
+                        <Link className='btn btn-success' to="/lettere" onClick={this.nextLetter} id='nxt-btn'>Next Letter</Link>
+                    
+                    </div>
+                    </div>
+                    </div>
         )
     }
 

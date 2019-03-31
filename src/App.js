@@ -18,6 +18,7 @@ import LetterIComponent from './components/LetterIComponent';
 import LetterRComponent from './components/LetterRComponent';
 import LetterEComponent from './components/LetterEComponent'; 
 import ResultsComponent from './components/ResultsComponent';
+import ProfileComponent from './components/ProfileComponent';
 
 class App extends React.Component {
   

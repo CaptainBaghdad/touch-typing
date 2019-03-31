@@ -10,11 +10,16 @@ class LetterEComponent extends Component{
         red: false,
         correct: [],
         wrong:[],
-        score: 0
+        score: 0,
+        userWpm: ''
     }
 
 
     componentDidMount(nextprops, nextstate){
+        let toke =  localStorage.getItem('token');
+       if(toke == '' || toke == undefined){
+        window.location = "/login";
+       }
         let holder = document.getElementById('e-container');
         let eInput = document.getElementById('e-input');
         let mainContainer = document.getElementById('main-container');
@@ -31,6 +36,7 @@ class LetterEComponent extends Component{
     
     handleStart = (event) => {
         let holder = document.getElementById('e-container');
+        holder.style.display = 'none';
         let eInput = document.getElementById('e-input');
         let eText = document.getElementById('e-input');
         let ebtn = document.getElementById('ebtn');
@@ -93,7 +99,7 @@ class LetterEComponent extends Component{
                     
                     this.setState({
                         start: this.state.start +=1,
-                        right: [... this.state.right, this.state.wpm.charAt(this.state.start)]
+                        userWpm: this.state.wpm.slice(this.state.start)
 
                     })
 
@@ -126,7 +132,7 @@ handleChange = (event) => {
                            name='k'
                            onChange={this.handleChange}
                            value={this.state.userInput}
-                           onKeyPress={this.captureKeyStrokes}
+                           onKeyUpCapture={this.captureKeyStrokes}
                            className="form-control"
                     />
      

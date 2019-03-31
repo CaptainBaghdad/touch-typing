@@ -1,6 +1,8 @@
 //import React, { Component } from 'react';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import FooterComponent from  '../components/FooterComponent';
+
 //
 
 
@@ -10,7 +12,6 @@ class HomeComponent extends React.Component {
   state = {
     open:true,
     value: '',
-    wpm: 'jkal lilksd ersli siy ll top pill',
     green: false,
     red: false,
     correct: [],
@@ -43,17 +44,19 @@ class HomeComponent extends React.Component {
     return (
       <div className="container">
         
-        
-        <div className="main-title">
-        <h3>Touch Typing</h3>
-
-        </div>
         <div id="section-1-r">
       <Link to="/register" className="links">Login
       </Link>
 
       <Link to="/login" className="links" >Register</Link>
         </div>
+
+
+        <div className="main-title">
+        <h3>Touch Typing</h3>
+
+        </div>
+       
 
 
   <section id="first-home-section">
@@ -83,9 +86,7 @@ class HomeComponent extends React.Component {
 
 
        <section id="footer-holder">
-         <footer>
-
-         </footer>
+         <FooterComponent />
        </section>
           
       

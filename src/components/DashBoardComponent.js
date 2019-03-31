@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Link} from 'react-router-dom';
 import '../css/dashboard.css';
 
+
 class DashBoardComponent extends React.Component{
     state = { 
         redirect: false,
@@ -78,6 +79,8 @@ class DashBoardComponent extends React.Component{
                 </nav>
                 </div>
                 </div>
+                
+
 
                 <div className="row">
                 <div className="col-md-4 col-lg-4 col-xs-4" id="user-info">
@@ -104,7 +107,7 @@ class DashBoardComponent extends React.Component{
                 <br/>
                 <br/>
 
-                <h2>AVG <span className="badge">{this.state.avg.toFixed(2)}</span></h2>
+                <h2>AVG <span className="badge">{!this.state.bool ? 0 : this.state.avg.toFixed(2)}</span></h2>
             </div>
         )
     }

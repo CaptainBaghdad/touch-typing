@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../css/letteru.css';
 import ResultsComponent from './ResultsComponent';
+import { Link } from 'react-router-dom';
 
 class LetterUComponent extends Component{
     state= {
@@ -11,27 +12,98 @@ class LetterUComponent extends Component{
         correct: [],
         wrong:[],
         score: 0,
-        userWpm:  ''
+        userWpm:  '',
+        bool: ''
     }
 
 
     componentDidMount(nextprops, nextstate){
+        //his.state.wpm = '';
+       let token =  localStorage.getItem('token');
+       if(token == '' || token == undefined){
+        window.location = "/login";
+       }
         let holder = document.getElementById('u-container');
-        let uInput = document.getElementById('u-input');
-        let mainContainer = document.getElementById('main-container');
-        mainContainer.style.height = '1000px';
-        mainContainer.style.width = '1000px';
-        mainContainer.style.background = `url(${process.env.PUBLIC_URL} /images/main-background.png)`;
-
+        let nxtbtn = document.getElementById('nxt-btn');
+        nxtbtn.style.display = 'none';
         holder.style.display = 'none';
+        let uInput = document.getElementById('u-input');
+        //let mainContainer = document.getElementById('main-container');
+        //mainContainer.style.height = '1000px';
+       // mainContainer.style.width = '1000px';
+       // mainContainer.style.background = `url(${process.env.PUBLIC_URL} /images/main-background.png)`;
+
+        //holder.style.display = 'none';
         uInput.style.display = 'none';
+        
         let wpmHoler = document.getElementById('wpmHolder');
         console.log(`This is the component mount ${uInput} `);
         
+        var ml4 = {};
+        ml4.opacityIn = [0,1];
+        ml4.scaleIn = [0.2, 1];
+        ml4.scaleOut = 3;
+        ml4.durationIn = 800;
+        ml4.durationOut = 600;
+        ml4.delay = 500;
+        
+        window.anime.timeline({loop: true})
+          .add({
+            targets: '.ml4 .letters-1',
+            opacity: ml4.opacityIn,
+            scale: ml4.scaleIn,
+            duration: ml4.durationIn
+          }).add({
+            targets: '.ml4 .letters-1',
+            opacity: 0,
+            scale: ml4.scaleOut,
+            duration: ml4.durationOut,
+            easing: "easeInExpo",
+            delay: ml4.delay
+          }).add({
+            targets: '.ml4 .letters-2',
+            opacity: ml4.opacityIn,
+            scale: ml4.scaleIn,
+            duration: ml4.durationIn
+          }).add({
+            targets: '.ml4 .letters-2',
+            opacity: 0,
+            scale: ml4.scaleOut,
+            duration: ml4.durationOut,
+            easing: "easeInExpo",
+            delay: ml4.delay
+          }).add({
+            targets: '.ml4 .letters-3',
+            opacity: ml4.opacityIn,
+            scale: ml4.scaleIn,
+            duration: ml4.durationIn
+          }).add({
+            targets: '.ml4 .letters-3',
+            opacity: 0,
+            scale: ml4.scaleOut,
+            duration: ml4.durationOut,
+            easing: "easeInExpo",
+            delay: ml4.delay
+          }).add({
+            targets: '.ml4',
+            opacity: 0,
+            duration: 500,
+            delay: 500
+          });
+
+
+
+
+
+
+
     }
     
     handleStart = (event) => {
         let holder = document.getElementById('u-container');
+        let ani = document.getElementById('ani');
+        ani.style.display = 'none';
+        holder.style.display = 'none';
         let uInput = document.getElementById('u-input');
         let uText = document.getElementById('u-input');
         let ubtn = document.getElementById('ubtn');
@@ -46,8 +118,12 @@ class LetterUComponent extends Component{
             coun ++;
             if(len == this.state.start || coun == 20){
                 
+                let nxtbtn = document.getElementById('nxt-btn');
                 let uDisplay  = document.getElementById('u-container');
                 uDisplay.style.display = 'inline';
+                uInput.style.display = 'none';
+                nxtbtn.style.display = 'inline';
+
                 clearInterval(interFunction);
                 this.setState({
                     score: this.state.userInput.length / 5
@@ -94,20 +170,27 @@ class LetterUComponent extends Component{
                     
                     this.setState({
                         start: this.state.start +=1,
-                        
-                        right: [... this.state.right, this.state.wpm.charAt(this.state.start)]
+                        userWpm: this.state.wpm.slice(this.state.start)
 
                     })
 
                 }
             }
 
+
+nextLetter = (event) => {
+        return ( 
+            <div>
+            <p>Pluto</p>
+            </div>
+        )
+            }
+
     
 handleChange = (event) => {
         
         this.setState({
-            userInput: event.target.value,
-            userWpm: this.state.wpm.slice(this.state.start)
+            userInput: event.target.value
         });
 }
 
@@ -116,27 +199,45 @@ handleChange = (event) => {
  
         return (
             <div className="container" id="main-container">
-            
-            <br/>
+            <div className='row'>
+            <div className='col-md-8 col-lg-8 col-xs-8'>
+            <h1 class="ml4" id="ani">
+                <span class="letters letters-1">Press</span>
+                <span class="letters letters-2">Start</span>
+                <span class="letters letters-3">Button!</span>
+            </h1>
 
             <br/>
-            <div>{this.state.userInput == '' ? this.state.wpm : this.state.userWpm}</div>
-            
+            <br/>
+            <br/>
+
            
+            <br/>
+            <br/>
+            <h4>{this.state.userInput == '' ? this.state.wpm : this.state.userWpm}</h4>
+            
+            </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <button className="btn btn-success" onClick={this.handleStart} id="ubtn">Start</button>
-            <br/>
-            <br/>
+            
             
             <center>
+                <div className='row'>
+                <div className='col-md-4 col-lg-4 col-xs-4'>
                     <input type='text' 
                            id="u-input" 
                            name='k'
                            onChange={this.handleChange}
                            value={this.state.userInput}
-                           onKeyPress={this.captureKeyStrokes}
+                           onKeyUpCapture={this.captureKeyStrokes}
                            className="form-control"
                     />
-     
+                </div>
+                </div>
             </center>
 
                     <div  id="u-container">
@@ -146,6 +247,14 @@ handleChange = (event) => {
                                     score={this.state.score}
                             />
 
+                    </div>
+                    <br/>
+                    <br/>
+                        <div className='row' id="next-holder">
+                        <div className='col-md-4 col-lg-4 col-xs-4'>
+                        <Link className='btn btn-success' to="/letterr" onClick={this.nextLetter} id='nxt-btn'>Next Letter</Link>
+                    
+                    </div>
                     </div>
                     </div>
         )

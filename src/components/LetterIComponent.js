@@ -17,6 +17,12 @@ class LetterIComponent extends Component{
     }
 
     componentDidMount(nextprops, nextstate){
+        let toke =  localStorage.getItem('token');
+        
+        if(toke == '' || toke == undefined){
+        window.location = "/login";
+       }
+        
         let holder = document.getElementById('main-background');
         let blockID = document.getElementById('i-input');
         holder.style.background = `url(${process.env.PUBLIC_URL} /images/main-background.png)`;

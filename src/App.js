@@ -29,7 +29,7 @@ class App extends React.Component {
      
       <div>
         
-     
+    
       
   <Switch>
     <Route exact path="/" component={HomeComponent} />

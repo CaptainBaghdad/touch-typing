@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 import '../css/dashboard.css';
+import StatsComponent from '../components/StatsComponent';
 
 
 class DashBoardComponent extends React.Component{
@@ -41,7 +42,7 @@ class DashBoardComponent extends React.Component{
          })
          .then(res => res.json())
          .then(data => {
-             console.log(`This is the dashboard promise response ${data.name}`);
+             console.log(`This is the dashboard promise response ${data}`);
              console.log(`This is the data response object ${data.letterR}`);
              this.setState({
                  username: name,
@@ -75,8 +76,9 @@ class DashBoardComponent extends React.Component{
 
                 </ul>
 
-
+                   
                 </nav>
+                <p>Logged in as {this.state.username.charAt(0).toUpperCase() + this.state.username.slice(1)}</p> 
                 </div>
                 </div>
                 
@@ -84,7 +86,7 @@ class DashBoardComponent extends React.Component{
 
                 <div className="row">
                 <div className="col-md-4 col-lg-4 col-xs-4" id="user-info">
-                <p>Logged in as {this.state.username.charAt(0).toUpperCase() + this.state.username.slice(1)}</p> 
+                
                 </div>
 
 
@@ -92,22 +94,50 @@ class DashBoardComponent extends React.Component{
 
                 <div className='row'>
                 <div className="col-xs-4 col-md-4 col-lr-4">
-                <h3>Letter U WPM <span className="wpm">{!this.state.bool ? 0 : this.state.obj.letterU}</span></h3>
+                <h3>Letter U WPM <span className="wpm">{!this.state.bool ? 0 : this.state.obj.letterU}</span>
+                <Link to="/letteru" className="rere">Retry</Link></h3>
                 <br/>
                 <br/>
-                <h3>Letter R WPM <span className="wpm">{!this.state.bool ? 0 : this.state.obj.letterR}</span></h3>
+                <h3>Letter R WPM <span className="wpm">{!this.state.bool ? 0 : this.state.obj.letterR}</span> 
+                <Link to="/letterr" className="rere">Retry</Link></h3>
+                
+                
                 <br/>
                 <br/>
-                <h3>Letter E WPM <span className="wpm" id="E">{!this.state.bool ? 0 : this.state.obj.letterE}</span></h3>
+                <h3>Letter E WPM <span className="wpm" id="E">{!this.state.bool ? 0 : this.state.obj.letterE}</span>
+                <Link to="/lettere" className="rere">Retry</Link>
+                </h3>
+                <br/>
+                <br/>
+                <h3>Letter I WPM <span className="wpm">{!this.state.bool ? 0 : this.state.obj.letterI}</span>
+                <Link to="/letteri" className="rere">Retry</Link>
+                </h3>
+                
                 </div>
+
+
+                <div className='col-md-5' id="stats">
+                    <p>LeaderBoard</p>
+                    <br/>
+                    
+                    
+                        <StatsComponent />
+                    
                 </div>
-                <br/>
-                <br/>
-                <h3>Letter I WPM <span className="wpm">{!this.state.bool ? 0 : this.state.obj.letterI}</span></h3>
+
+
+                </div>
+                
+                
                 <br/>
                 <br/>
 
                 <h2>AVG <span className="badge">{!this.state.bool ? 0 : this.state.avg.toFixed(2)}</span></h2>
+            
+            
+                
+            
+            
             </div>
         )
     }

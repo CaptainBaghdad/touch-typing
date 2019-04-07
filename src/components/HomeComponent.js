@@ -19,13 +19,21 @@ class HomeComponent extends React.Component {
     start: 0,
     name: '',
     email: '',
-    password:''
+    password:'',
+    loggedIn: false
 
 
   }
 
   
-  
+  componentDidMount(){
+    let ans = localStorage.getItem('name');
+    console.log(`COMPONENT DID MOUNT ${ans}`);
+    if(ans !== null){
+    this.setState({loggedIn: true})
+    }
+
+  }
 
   handleChange = (e) => {
     //console.log(`this is from the change ${e.target.value}`);
@@ -35,21 +43,41 @@ class HomeComponent extends React.Component {
 
 
   
+
+
+    
+  
   
 
 
   render() {
 
+     
+    
+      
+    
+
     
     return (
       <div className="container">
-        
-        <div id="section-1-r">
-      <Link to="/register" className="links">Login
-      </Link>
+        {this.state.loggedIn ? 
+        (
+          <div>
+            <Link to="/logout">Logout</Link>
+            <Link to="/dashboard">Dashboard</Link>
+          </div>
+        )
+      : 
 
-      <Link to="/login" className="links" >Register</Link>
-        </div>
+      (
+        <div>
+        <Link to="/login">Login</Link>
+        <Link to="/register">Register</Link>
+      </div> 
+      )
+      
+      }
+        
 
 
         <div className="main-title">
@@ -67,7 +95,7 @@ class HomeComponent extends React.Component {
       <br/>
       <br/>
 
-      <button className="btn btn-success">Try it</button>
+      
       </center>
   </section>
 

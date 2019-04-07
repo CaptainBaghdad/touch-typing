@@ -28,15 +28,16 @@ p{
 #section-1-r{
     float:right;
     
-    background: darkcyan;
-    opacity: 0.5;
+    background: white;
+    color:white;
     
     font-size: 22px;
     margin-left: 12px;
     margin-top: 28px;
-    height:100px;
-    width: 100%;
+    
     font: black;
+    
+    top:0;
    
     
 
@@ -86,4 +87,21 @@ ul li{
     height:100%;
     width:90%;
     opacity: 1;
+}
+
+.login-main{
+    width:300px;
+    height: 300px;
+}
+
+.lg-container{
+    height: 325px;
+    width: 450px;
+    background: white;
+    margin-top: 100px;
+
+}
+
+#reg-link{
+   
 }

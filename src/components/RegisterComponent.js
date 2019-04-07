@@ -2,7 +2,7 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 
-//import '../css/home.css'*/
+import '../css/home.css'
 
 class RegisterComponent extends React.Component {
 
@@ -56,11 +56,13 @@ class RegisterComponent extends React.Component {
 
     
     return (
-      <div>
+      <center>
+        <div className='lg-container'>
+      <div className="login-main">
         <h1>Register</h1>
 
-        <form onSubmit={this.handleSubmit}>
-        <input type="text" 
+        <form onSubmit={this.handleSubmit} className="form">
+        Name <input type="text" 
         value={this.state.name}
         onChange={this.handleChange} 
         id="name"
@@ -69,7 +71,7 @@ class RegisterComponent extends React.Component {
         
         />
 
-        <input type="text"
+        Email <input type="text"
         id="email" 
         value={this.state.email}
         onChange={this.handleChange} 
@@ -78,7 +80,7 @@ class RegisterComponent extends React.Component {
         
         />
 
-        <input type="text"
+        Password <input type="text"
         id="password"
         value={this.state.password}
         onChange={this.handleChange}
@@ -91,8 +93,11 @@ class RegisterComponent extends React.Component {
         <input type="submit" className='form-control' />
         </form>
       
-    <Link to="/login">Login</Link>
+   
     </div>
+    <Link to="/login" id="reg-link">Login</Link>
+    </div>
+    </center>
       
     
         

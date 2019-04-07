@@ -64,13 +64,17 @@ class LoginComponent extends React.Component {
 
     
     return (
-      <div>
+      <center>
+        <div className='lg-container'>
+      <div className='login-main'>
+      
+      
         <h1>Login</h1>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className='form' >
        
 
-        <input type="text" 
+       Email <input type="text" 
         onChange={this.handleChange} 
         name="email"
         id="email"
@@ -78,7 +82,7 @@ class LoginComponent extends React.Component {
         value={this.state.email}
         />
 
-        <input type="text"
+        Password <input type="text"
         onChange={this.handleChange}
         name='password'
         id="password"
@@ -90,8 +94,14 @@ class LoginComponent extends React.Component {
         <input type="submit" className='form-control' />
         </form>
       
-    <Link to="/register">Sign up</Link>
+    
+    
+    
     </div>
+    <Link to="/register" id="reg-link">Sign up</Link>
+    </div>
+    
+    </center>
       
     
         

@@ -6,3 +6,23 @@
     font-size: 30px;
     margin-left: 40px;
 }
+
+#retries{
+    float: right;
+}
+
+.rere{
+    margin-left: 25px;
+}
+
+#stats{
+    float:right;
+}
+
+.dash-nav{
+    float: right;
+}
+
+li{
+    margin-left: 20px;
+}

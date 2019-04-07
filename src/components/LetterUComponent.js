@@ -198,7 +198,17 @@ handleChange = (event) => {
         render(){
  
         return (
+            
             <div className="container" id="main-container">
+            <nav className="dash-nav">
+                <ul>
+                    <li><Link to="/logout">Logout</Link></li>
+                    <li><Link to='/'>Home</Link></li>
+
+                </ul>
+
+                   
+                </nav>
             <div className='row'>
             <div className='col-md-8 col-lg-8 col-xs-8'>
             <h1 class="ml4" id="ani">

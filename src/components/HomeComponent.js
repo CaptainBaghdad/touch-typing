@@ -2,10 +2,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import FooterComponent from  '../components/FooterComponent';
-
-//
-
-
 import '../css/home.css'
 class HomeComponent extends React.Component {
 
@@ -36,50 +32,32 @@ class HomeComponent extends React.Component {
   }
 
   handleChange = (e) => {
-    //console.log(`this is from the change ${e.target.value}`);
+    
    this.setState({value: e.target.value }) ;
 
   }
 
+render() {
 
-  
-
-
-    
-  
-  
-
-
-  render() {
-
-     
-    
-      
-    
-
-    
-    return (
+     return (
       <div className="container">
         {this.state.loggedIn ? 
         (
-          <div>
-            <Link to="/logout">Logout</Link>
-            <Link to="/dashboard">Dashboard</Link>
+          <div className="dash-nav">
+            <li><Link to="/logout">Logout</Link></li>
+            <li><Link to="/dashboard">Dashboard</Link></li>
           </div>
         )
       : 
 
       (
-        <div>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
+        <div className="dash-nav">
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/register">Register</Link></li>
       </div> 
       )
       
       }
-        
-
-
         <div className="main-title">
         <h3>Touch Typing</h3>
 
@@ -95,34 +73,29 @@ class HomeComponent extends React.Component {
       <br/>
       <br/>
 
-      
       </center>
   </section>
 
     <section id="second-home-section">
     <center>choose one
     <ul>
-      <li><Link to="/letteru"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-u.jpg'} alt="no pic" /></Link></li>
-      <li><Link to="/letterr"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-r.png'} alt="mp pic" /></Link></li>
-      <li><Link to="/letteri"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-i.jpg'} alt="no pic" /></Link></li>
-      <li><Link to="/lettere"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-e.png'} alt="no pic" /></Link></li>
+      <li ><Link to="/letteru" className="hvr-wobble-to-top-right"><img className="display-pic hvr-wobble-to-top-right" src={process.env.PUBLIC_URL + '/images/letter-u.jpg'} alt="no pic" /></Link></li>
+      <li className="hvr-wobble-to-top-right"><Link to="/letterr"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-r.png'} alt="mp pic" /></Link></li>
+      <li className="hvr-wobble-to-top-right"><Link to="/letteri"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-i.jpg'} alt="no pic" /></Link></li>
+      <li className="hvr-wobble-to-top-right"><Link to="/lettere"><img className="display-pic" src={process.env.PUBLIC_URL + '/images/letter-e.png'} alt="no pic" /></Link></li>
     </ul>
 
 
     </center>
     </section>
-
-
-       <section id="footer-holder">
-         <FooterComponent />
+        <section id="footer-holder">
+        
        </section>
           
       
     </div>
       
-      
-        
-    );
+      );
   }
 }
 

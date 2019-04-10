@@ -5,7 +5,10 @@ import {Link} from 'react-router-dom';
 
 class LetterEComponent extends Component{
     state= {
-        wpm:'eeeiouoeeeeecee eerie eerie erie eew end ever endless eager easy ever elf end yes sir see there the end erie elephant ease easy end ever there the then eend',
+        wpm:`eeeiou eerie eerie erie eew end ever endless eager easy ever elf end yes sir see there the end erie elephant ease easy end ever there the then eend
+        easer eaten eight egger eject elect eater eve earn edit epic enol endless ease elf ever
+        ebooks eagle ecarte earing earn easy regular connection
+        earth earthling learning landing learn more haste heavy eat end yes pop`,
         userInput: '',
         start: 0,
         red: false,
@@ -116,7 +119,7 @@ class LetterEComponent extends Component{
         console.log(userToken);
         let interFunction = () => {
             coun ++;
-            if(len == this.state.start || coun == 20){
+            if(len == this.state.start || coun == 60){
                 
                 let nxtbtn = document.getElementById('nxt-btn');
                 let eDisplay  = document.getElementById('e-container');
@@ -193,7 +196,7 @@ class LetterEComponent extends Component{
             <nav className="dash-nav">
                 <ul>
                     <li><Link to="/logout">Logout</Link></li>
-                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
 
                 </ul>
 

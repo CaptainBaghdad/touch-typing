@@ -17,12 +17,13 @@ class StatsComponent extends Component{
         fetch('http://localhost:4000/stats')
         .then(res => res.json())
         .then(data => {
+            console.log(`STATSSSSS ${data.length}`);
             if(this._isMounted){
                 this.setState({
-                    uLeader: data.uLeader,
-                    rLeader : data.rLeader,
-                    eLeader: data.eLeader,
-                    iLeader: data.iLeader
+                    uLeader: data[1],
+                    rLeader : data[2],
+                    eLeader: data[0],
+                    iLeader: data[3]
 
                 })
             }
@@ -31,9 +32,9 @@ class StatsComponent extends Component{
 
     }
 
-    componentWillUnmount(){
-        this._isMounted = false;
-    }
+    //componentWillUnmount(){
+      //  this._isMounted = false;
+    //}
 
 
 

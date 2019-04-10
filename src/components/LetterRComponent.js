@@ -62,7 +62,7 @@ class LetterRComponent extends Component{
         console.log(userToken);
         let interFunction = () => {
             coun ++;
-            if(len == this.state.start || coun == 20){
+            if(len == this.state.start || coun == 60){
                 
                 let rDisplay  = document.getElementById('r-container');
                 rInput.style.display = 'none';
@@ -141,7 +141,7 @@ handleChange = (event) => {
             <nav className="dash-nav">
                 <ul>
                     <li><Link to="/logout">Logout</Link></li>
-                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
 
                 </ul>
 

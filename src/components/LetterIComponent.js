@@ -8,7 +8,11 @@ class LetterIComponent extends Component{
     state = {
         loggedIn: false,
         token: '',
-        wpm: 'in into intend inspect in out reel is into like' ,
+        wpm: `in into intend inspect in out reel is into like
+        lost loose soft liquid life live love like in into ill is also dissent forget lollipop lol look lock lick
+        learn love live los cost time in into ill is isa twist this is the last is soft soccer sad face happy sad success set seven 
+        section spending skills sacred server serve dad sad saas six souls roads pistols panic expensive sections lines times 
+        inside spider sad section seven never tested pleasre special splended spending ` ,
         userInput:'',
         red: false,
         start: 0,
@@ -116,7 +120,7 @@ class LetterIComponent extends Component{
         console.log(userToken);
         let interFunction = () => {
             coun ++;
-            if(len == this.state.start || coun == 20){
+            if(len == this.state.start || coun == 60){
                 
                 let nxtbtn = document.getElementById('nxt-btn');
                 let iDisplay  = document.getElementById('i-container');
@@ -194,7 +198,7 @@ class LetterIComponent extends Component{
             <nav className="dash-nav">
                 <ul>
                     <li><Link to="/logout">Logout</Link></li>
-                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
 
                 </ul>
 

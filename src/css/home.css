@@ -1,8 +1,30 @@
 body{
-    background: #e5e6e8;
+    background: white;
     font:black;
    
 }
+.container{
+    background: lightgray;
+}
+
+.hvr-wobble-to-top-right {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  }
+
+  .hvr-wobble-to-top-right:hover, .hvr-wobble-to-top-right:focus, .hvr-wobble-to-top-right:active {
+    -webkit-animation-name: hvr-wobble-to-top-right;
+    animation-name: hvr-wobble-to-top-right;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+  }
 
 #k{
     height:30px;
@@ -50,7 +72,7 @@ p{
 #footer-holder{
     height: 150px;
     width: 100%;
-    background: darkcyan;
+    
     opacity: 0.5;
 }
 
@@ -69,7 +91,15 @@ p{
 
 ul li{
     list-style: none;
-    display:inline;
+    
+    
+}
+
+.dash-nav li{
+    float:right;
+    
+
+    margin-left: 25px;
 }
 
 .display-pic{
@@ -95,13 +125,13 @@ ul li{
 }
 
 .lg-container{
-    height: 325px;
+    height: 360px;
     width: 450px;
-    background: white;
+    background: slategrey;
     margin-top: 100px;
 
 }
 
-#reg-link{
-   
+#second-home-section li{
+   display:inline;
 }

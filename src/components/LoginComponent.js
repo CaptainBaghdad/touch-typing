@@ -16,22 +16,17 @@ class LoginComponent extends React.Component {
   }
 
 
-  
-
-
-    handleChange = (event) => {
-        event.preventDefault();
+handleChange = (event) => {
+      event.preventDefault();
       this.setState({
-       
-        [event.target.id]: event.target.value
-         
-      })
+       [event.target.id]: event.target.value
+       })
 
     }
 
-    handleSubmit = (event) => {
+handleSubmit = (event) => {
         
-      fetch('http://localhost:4000/login', {
+  fetch('http://localhost:4000/login', {
         method: 'POST',
         headers: {
           
@@ -47,13 +42,9 @@ class LoginComponent extends React.Component {
       })
         .then(res => res.json())
         .then(data => {
-            
-
-            
-                
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('name', data.data.name);
-                    window.location = '/dashboard';
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('name', data.data.name);
+            window.location = '/letteru';
                 
             
          })
@@ -67,14 +58,12 @@ class LoginComponent extends React.Component {
       <center>
         <div className='lg-container'>
       <div className='login-main'>
-      
-      
         <h1>Login</h1>
 
         <form onSubmit={this.handleSubmit} className='form' >
        
 
-       Email <input type="text" 
+        Email <input type="text" 
         onChange={this.handleChange} 
         name="email"
         id="email"
@@ -82,7 +71,7 @@ class LoginComponent extends React.Component {
         value={this.state.email}
         />
 
-        Password <input type="text"
+        Password <input type="password"
         onChange={this.handleChange}
         name='password'
         id="password"
@@ -91,20 +80,14 @@ class LoginComponent extends React.Component {
         />
         <br/>
         <br/>
-        <input type="submit" className='form-control' />
+        <input type="submit" role="btn" className='form-control btn btn-success' />
         </form>
-      
-    
-    
-    
     </div>
-    <Link to="/register" id="reg-link">Sign up</Link>
+    <Link className= "btn btn-info"to="/register" id="reg-link">Sign up</Link>
     </div>
     
     </center>
       
-    
-        
     );
   }
 }

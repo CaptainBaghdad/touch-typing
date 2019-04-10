@@ -78,7 +78,7 @@ class DashBoardComponent extends React.Component{
 
                    
                 </nav>
-                <p>Logged in as {this.state.username.charAt(0).toUpperCase() + this.state.username.slice(1)}</p> 
+                <p>Logged in as {this.state.username.toLowerCase().charAt(0).toUpperCase() + this.state.username.slice(1).toLowerCase()}</p> 
                 </div>
                 </div>
                 

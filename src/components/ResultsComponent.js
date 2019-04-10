@@ -57,10 +57,6 @@ class ResultsComponent extends Component{
             delay: 500
           });
 
-
-
-
-
     }
    
     render(){

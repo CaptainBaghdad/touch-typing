@@ -28,12 +28,6 @@ class LetterUComponent extends Component{
         nxtbtn.style.display = 'none';
         holder.style.display = 'none';
         let uInput = document.getElementById('u-input');
-        //let mainContainer = document.getElementById('main-container');
-        //mainContainer.style.height = '1000px';
-       // mainContainer.style.width = '1000px';
-       // mainContainer.style.background = `url(${process.env.PUBLIC_URL} /images/main-background.png)`;
-
-        //holder.style.display = 'none';
         uInput.style.display = 'none';
         
         let wpmHoler = document.getElementById('wpmHolder');
@@ -91,13 +85,7 @@ class LetterUComponent extends Component{
             delay: 500
           });
 
-
-
-
-
-
-
-    }
+}
     
     handleStart = (event) => {
         let holder = document.getElementById('u-container');
@@ -116,7 +104,7 @@ class LetterUComponent extends Component{
         console.log(userToken);
         let interFunction = () => {
             coun ++;
-            if(len == this.state.start || coun == 20){
+            if(len == this.state.start || coun == 60){
                 
                 let nxtbtn = document.getElementById('nxt-btn');
                 let uDisplay  = document.getElementById('u-container');
@@ -147,10 +135,7 @@ class LetterUComponent extends Component{
                 })
 
             }
-
-
-           
-        };
+};
 
                
                 setInterval(interFunction,milli);
@@ -178,13 +163,7 @@ class LetterUComponent extends Component{
             }
 
 
-nextLetter = (event) => {
-        return ( 
-            <div>
-            <p>Pluto</p>
-            </div>
-        )
-            }
+
 
     
 handleChange = (event) => {
@@ -203,7 +182,7 @@ handleChange = (event) => {
             <nav className="dash-nav">
                 <ul>
                     <li><Link to="/logout">Logout</Link></li>
-                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
 
                 </ul>
 

@@ -18,7 +18,7 @@ import LetterIComponent from './components/LetterIComponent';
 import LetterRComponent from './components/LetterRComponent';
 import LetterEComponent from './components/LetterEComponent'; 
 import ResultsComponent from './components/ResultsComponent';
-import ProfileComponent from './components/ProfileComponent';
+
 
 class App extends React.Component {
   
@@ -28,11 +28,8 @@ class App extends React.Component {
     return (
      
       <div>
-        
-    
-      
-  <Switch>
-    <Route exact path="/" component={HomeComponent} />
+        <Switch>
+     <Route exact path="/" component={HomeComponent} />
      <Route exact path='/login'  component={LoginComponent} />
      <Route exact path='/register'  component={RegisterComponent} />
      <Route exact path='/dashboard' component={DashBoardComponent} />
@@ -44,7 +41,7 @@ class App extends React.Component {
      <Route exact path="/letteri" component={LetterIComponent} />
      <Route exact path="/letterr" component={LetterRComponent} />
      <Route exact path="/results" component={ResultsComponent} />
-  </Switch>
+        </Switch>
       </div>
     
         

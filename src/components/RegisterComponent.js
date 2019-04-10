@@ -1,25 +1,16 @@
-//import React, { Component } from 'react';
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 
 import '../css/home.css'
 
 class RegisterComponent extends React.Component {
-
- 
-    state = {
+   state = {
       name: '',
       email: '',
       password: ''
    }
 
- 
-
-
-  
-
-
-    handleChange = (event) => {
+handleChange = (event) => {
       console.log(`WTF the name value : ${event.target.value}`)
       this.setState({
        [event.target.id] : event.target.value
@@ -28,7 +19,7 @@ class RegisterComponent extends React.Component {
 
     }
 
-    handleSubmit = (event)  =>{
+handleSubmit = (event)  =>{
       
       fetch('http://localhost:4000/register', {
         method: 'POST',
@@ -42,10 +33,7 @@ class RegisterComponent extends React.Component {
           email: this.state.email,
           password: this.state.password
         })
-       
-
-       
-      })
+       })
         .then(res => res.json())
         .then(data => window.location = '/login');
         
@@ -66,7 +54,6 @@ class RegisterComponent extends React.Component {
         value={this.state.name}
         onChange={this.handleChange} 
         id="name"
-      
         className="form-control"
         
         />
@@ -75,27 +62,25 @@ class RegisterComponent extends React.Component {
         id="email" 
         value={this.state.email}
         onChange={this.handleChange} 
-        
         className="form-control"
         
         />
 
-        Password <input type="text"
+        Password <input type="password"
         id="password"
         value={this.state.password}
         onChange={this.handleChange}
-        
         className="form-control"
         
         />
         <br/>
         <br/>
-        <input type="submit" className='form-control' />
+        <input type="submit" className='form-control btn btn-success' />
         </form>
       
    
     </div>
-    <Link to="/login" id="reg-link">Login</Link>
+    <Link to="/login" id="reg-link" className="btn btn-info">Login</Link>
     </div>
     </center>
       
